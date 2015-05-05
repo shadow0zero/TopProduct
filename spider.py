@@ -36,7 +36,7 @@ for i in xrange(20):
 
 _WORKER_THREADHTML_NUM = 1
 _WORKER_THREADDATA_NUM = 1 
-Internal = 15#一个爬虫间隔链接数
+Internal = 30#一个爬虫间隔链接数
 Internal_day = Internal * 3#一个爬虫间隔的日期数(一个链接包括3个日期)
 token = None 
 #Unique ID
