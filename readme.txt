@@ -1,3 +1,1 @@
-"This is the third time that i try to learn git"
-"test"
-"3"
+"This is a web-combiner.It combine many other websites about some product website"
