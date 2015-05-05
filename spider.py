@@ -86,9 +86,6 @@ def store_html(url_q,html_q,s):
 #----解析页面-----
 def parse_html(url_q,html_q,out):
     global Internal
-    
-    datas = {}
-
     j = 0
     while j < Internal:
         if html_q.empty():
@@ -134,18 +131,16 @@ def parse_html(url_q,html_q,out):
         global token
         token = soup.find_all('meta',attrs={"name":"csrf-token"})
         #--------print date-title-summary
-        global UID
         x = 0
         for date in dates:
             out.write(date.encode('utf-8'))
             out.write('\n')
             title = titles[x]
             summary = summaries[x]
+            datas = {}
             datas["date"]=date
             datas["title"] = title
             datas["summary"] = summary
-            #dates["id"] = UID
-            UID += 1
             y = 0 
             while y<3:
                 out.write(title[y].encode('utf-8'))
