@@ -11,7 +11,7 @@ import tornado.options
 import tornado.web
 from tornado.options import define,options
 
-import pymongo
+from pymongo import MongoClient,DESCENDING
 
 define("port",default=8002,help="run on the given port",type=int)
 
@@ -25,16 +25,16 @@ class Application(tornado.web.Application):
                 static_path = os.path.join(os.path.dirname(__file__),"static"),
                 debug = True,
                 )
-        conn = pymongo.Connection("localhost",27017)
+        conn = MongoClient("localhost",27017)
         #数据库名字topnext
-        sefl.db = conn["topnext"]
+        self.db = conn["topnext"]
         tornado.web.Application.__init__(self,handlers,**settings)
 
-class MainHandler(tornado.werb.RequestHandler):
+class MainHandler(tornado.web.RequestHandler):
     def get(self):
         #Collection名字prod_next
         coll = self.application.db.prod_next
-        posts = coll.find().sort("id",pymongo.DESCENDING)
+        posts = coll.find().sort("date",DESCENDING)
         self.render(
                     "index.html",
                     posts = posts,
@@ -45,6 +45,6 @@ def main():
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     main()
 
