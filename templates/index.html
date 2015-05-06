@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html> <html> <head>
 <title>TopProduct</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
@@ -8,9 +6,9 @@
 <!--
 <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 -->
-<link href="css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="css/buttons.css">
-<link href="css/index.css" rel="stylesheet">
+<link rel="stylesheet" href="{{static_url("css/bootstrap.css")}}">
+<link rel="stylesheet" href="{{static_url("css/buttons.css")}}">
+<link rel="stylesheet" href="{{static_url("css/index.css")}}">
 
 
 </head>
@@ -34,7 +32,7 @@
         </div>
 </header>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row js-masonry" data-masonry-options='{ "columnWidth": 30, "itemSelector": ".col-xs-1" }'>
         {% for post in posts %}
         <div class="col-xs-1">
             <div class="panel">
@@ -46,7 +44,7 @@
                 <div class="panel_container">
                 <table >
                     <tbody>
-                        {{for prod in post['prods']}}
+                        {% for prod in post['prods'] %}
                         <tr class="prodrow">
                             <td>
                                 <div class="vote">
@@ -58,8 +56,8 @@
                             </td>
                             <td>
                                 <div class="prodinfo">
-                                    <a class="prodname" href="">{{prod['title']}}</a>
-                                    <span class="prodline">{{prod['info']}}</span>
+                                    <a class="prodname" href="{{prod['url']}}">{{prod['title']}}</a>
+                                    <span class="prodline">{{prod['summary']}}</span>
                                 </div>
                             </td>
                         </tr>
@@ -70,325 +68,13 @@
             </div>
         </div>
         {% end %}
-        <div class="col-xs-2">
-            <div class="panel">
-                <div class="panel_header">
-                    <h3 class="panel_title">
-                        2015-05-01
-                    </h3>
-                </div>
-                <div class="panel_container">
-                <table >
-                    <tbody>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">知笔墨</a>
-                                    <span class="prodline">内容发布及阅读平台，一步到位的自出版工具，让文字自由流动</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Powerwall</a>
-                                    <span class="prodline">特斯拉推出的家用电池，3000 美金起</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Pixel Thoughts</a>
-                                    <span class="prodline">60 秒清除你头脑里的杂念</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-3">
-            <div class="panel">
-                <div class="panel_header">
-                    <h3 class="panel_title">
-                        2015-05-01
-                    </h3>
-                </div>
-                <div class="panel_container">
-                <table >
-                    <tbody>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">知笔墨</a>
-                                    <span class="prodline">内容发布及阅读平台，一步到位的自出版工具，让文字自由流动</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Powerwall</a>
-                                    <span class="prodline">特斯拉推出的家用电池，3000 美金起</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Pixel Thoughts</a>
-                                    <span class="prodline">60 秒清除你头脑里的杂念</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-4">
-            <div class="panel">
-                <div class="panel_header">
-                    <h3 class="panel_title">
-                        2015-05-01
-                    </h3>
-                </div>
-                <div class="panel_container">
-                <table >
-                    <tbody>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">知笔墨</a>
-                                    <span class="prodline">内容发布及阅读平台，一步到位的自出版工具，让文字自由流动</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Powerwall</a>
-                                    <span class="prodline">特斯拉推出的家用电池，3000 美金起</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Pixel Thoughts</a>
-                                    <span class="prodline">60 秒清除你头脑里的杂念</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-5">
-            <div class="panel">
-                <div class="panel_header">
-                    <h3 class="panel_title">
-                        2015-05-01
-                    </h3>
-                </div>
-                <div class="panel_container">
-                <table >
-                    <tbody>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">知笔墨</a>
-                                    <span class="prodline">内容发布及阅读平台，一步到位的自出版工具，让文字自由流动</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Powerwall</a>
-                                    <span class="prodline">特斯拉推出的家用电池，3000 美金起</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Pixel Thoughts</a>
-                                    <span class="prodline">60 秒清除你头脑里的杂念</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6">
-            <div class="panel">
-                <div class="panel_header">
-                    <h3 class="panel_title">
-                        2015-05-01
-                    </h3>
-                </div>
-                <div class="panel_container">
-                <table >
-                    <tbody>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">知笔墨</a>
-                                    <span class="prodline">内容发布及阅读平台，一步到位的自出版工具，让文字自由流动</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Powerwall</a>
-                                    <span class="prodline">特斯拉推出的家用电池，3000 美金起</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="prodrow">
-                            <td>
-                                <div class="vote">
-                                    <a class=vote_link href="">
-                                        <i class="upvote"></i>
-                                        <span class="vote_count">30</span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="prodinfo">
-                                    <a class="prodname" href="">Pixel Thoughts</a>
-                                    <span class="prodline">60 秒清除你头脑里的杂念</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-<>
+</body>
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
 <script src="https://code.jquery.com/jquery.js"></script>
 <!-- 包括所有已编译的插件 -->
-<script src="js/bootstrap.min.js"></script>
+<script src="{{static_url("js/bootstrap.min.js")}}"></script>
+<script src="{{static_url("js/masonry.pkgd.min.js")}}"></script>
+<script src="{{static_url("js/index.js")}}"></script>
+</html>

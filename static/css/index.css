@@ -15,6 +15,9 @@ header{
 .container-fluid{
     margin-top:100px;
 }
+.container-fluid .row{
+    margin:0 auto;
+}
 .left{
     margin-left:50px;
     display:inline-block;
@@ -65,6 +68,6 @@ header{
 .upvote{
    width:16px;
    height:9px;
-   background:url(../pic/upvote.svg) 0 0; 
+   background:url(../pic/upvote.svg) -16px 0; 
    display:inline-block;
 }

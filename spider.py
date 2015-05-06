@@ -36,7 +36,7 @@ for i in xrange(20):
 
 _WORKER_THREADHTML_NUM = 1
 _WORKER_THREADDATA_NUM = 1 
-Internal = 30#一个爬虫间隔链接数
+Internal = 10#一个爬虫间隔链接数
 Internal_day = Internal * 3#一个爬虫间隔的日期数(一个链接包括3个日期)
 token = None 
 #Unique ID
@@ -104,7 +104,7 @@ def parse_html(url_q,html_q,out):
         dates = []
         for date in dates_tag:
             dates.append(date.contents[3].string)
-        #--------Post标题和摘要--------
+        #--------Post标题,摘要,投票,链接--------
         posts_tag = soup.find_all(class_="post")#EveryDay
         posts = []#EveryDay-product-list
         for post in posts_tag:
@@ -112,44 +112,71 @@ def parse_html(url_q,html_q,out):
         i = 0
         titles = []
         summaries = []
+        votes = []
+        urls = []
         while i <= len(posts)-1:
             #titles:Three days-product-title-list
             #title:Oneday of product title list
             title_tag = posts[i].find_all('a', 'post-url')
             summary_tag = posts[i].find_all('span','post-tagline')
+            vote_tag = posts[i].find_all('span','vote-count')
             x = 0
             title = []
             summary = []
+            vote = []
+            url = []
             while x < 3:
                 title.append(title_tag[x].string) 
                 summary.append(summary_tag[x].string)
+                vote.append(vote_tag[x].string)
+                url.append("http://next.36kr.com/"+title_tag[x]['href'])
                 x+=1
             titles.append(title)
             summaries.append(summary)
+            votes.append(vote)
+            urls.append(url)
             i+=1
         #--------get token-------------
         global token
         token = soup.find_all('meta',attrs={"name":"csrf-token"})
-        #--------print date-title-summary
+        #--------print date-title-summary-----------
         x = 0
         for date in dates:
             out.write(date.encode('utf-8'))
-            out.write('\n')
+            out.write('---------------------')
             title = titles[x]
             summary = summaries[x]
+            vote = votes[x]
+            url = urls[x]
             datas = {}
             datas["date"]=date
-            datas["title"] = title
-            datas["summary"] = summary
             y = 0 
+            prods = []
             while y<3:
                 out.write(title[y].encode('utf-8'))
+                out.write(vote[y].encode('utf-8'))
+                out.write('\n')
+                out.write(url[y].encode('utf-8'))
                 out.write('\n')
                 out.write(summary[y].encode('utf-8'))
                 out.write('\n')
-                #datas["post"+str(y)] = [title[y],summary[y]]
+                prod = {}
+                prod["title"] = title[y]
+                prod["summary"] = summary[y]
+                prod["vote"] = vote[y] 
+                prod["url"] = url[y] 
+                prods.append(prod)
                 y+=1
+            datas["prods"] = prods
             x+=1
+            #datas{
+            #    'date':date,
+            #    'prods':'[
+            #    ['titles':title,'summary':summary],
+            #    ['title':title,'summary':summary],
+            #    ['title':title,'summary':summary],
+            #    ]'
+            #}      
             #写入数据库
             coll.insert(datas)
         j+=1
